@@ -1651,11 +1651,11 @@
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="button" id="723">
-							<label>Kittmaster's [LOWERCASE]$LOCALIZE[24011][/LOWERCASE]</label>
-							<label2>$VAR[AddonKittmasterRepoVar]</label2>
-							<onclick condition="!System.HasAddon(repository.kittmaster)">InstallAddon(repository.kittmaster)</onclick>
-							<onclick condition="!System.AddonIsEnabled(repository.kittmaster)">EnableAddon(repository.kittmaster)</onclick>
-							<onclick condition="System.HasAddon(repository.kittmaster)">Addon.OpenSettings(repository.kittmaster)</onclick>
+							<label>jcastell7's [LOWERCASE]$LOCALIZE[24011][/LOWERCASE]</label>
+							<label2>$VAR[AddonMadnoxRepoVar]</label2>
+							<onclick condition="!System.HasAddon(repository.madnox)">InstallAddon(repository.madnox)</onclick>
+							<onclick condition="!System.AddonIsEnabled(repository.madnox)">EnableAddon(repository.madnox)</onclick>
+							<onclick condition="System.HasAddon(repository.madnox)">Addon.OpenSettings(repository.madnox)</onclick>
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="button" id="724">

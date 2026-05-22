@@ -471,10 +471,10 @@
 		<value>$INFO[System.AddonVersion(script.cu.lrclyrics),v, ][COLOR green]✓[/COLOR]</value>
 	</variable>
 
-	<variable name="AddonKittmasterRepoVar">
-		<value condition="!System.HasAddon(repository.kittmaster)">[COLOR red]✕[/COLOR]</value>
-		<value condition="!System.AddonIsEnabled(repository.kittmaster)">$LOCALIZE[1223]  [COLOR orange]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(repository.kittmaster),v, ][COLOR green]✓[/COLOR]</value>
+	<variable name="AddonMadnoxRepoVar">
+		<value condition="!System.HasAddon(repository.madnox)">[COLOR red]✕[/COLOR]</value>
+		<value condition="!System.AddonIsEnabled(repository.madnox)">$LOCALIZE[1223]  [COLOR orange]✕[/COLOR]</value>
+		<value>$INFO[System.AddonVersion(repository.madnox),v, ][COLOR green]✓[/COLOR]</value>
 	</variable>
 
 	<variable name="AddonWikipediaVar">

@@ -68,7 +68,7 @@
             <icon>icon.png</icon>
         </assets>
     </extension>
-</addon><addon id="resource.images.moviegenreicons.filmstrip-hd.bw" name="Movie Genre Icons - Filmstrip HD - BW" version="1.0.1" provider-name="bsoriano, Mr. V, Kittmaster">
+</addon><addon id="resource.images.moviegenreicons.filmstrip-hd.bw" name="Movie Genre Icons - Filmstrip HD - BW" version="1.0.1" provider-name="bsoriano, Mr. V, jcastell7">
 	<extension point="kodi.resource.images" compile="true" type="moviegenreicons" />
 	<requires>
 		<import addon="kodi.resource" version="1.0.0" />
@@ -79,7 +79,7 @@
 		<platform>all</platform>
 		<license>Creative Commons Attribution 3.0</license>
 	</extension>
-</addon><addon id="resource.images.moviegenreicons.filmstrip-hd.colour" name="Movie Genre Icons - Filmstrip HD - coloured" version="1.0.1" provider-name="bsoriano, Mr. V, Kittmaster">
+</addon><addon id="resource.images.moviegenreicons.filmstrip-hd.colour" name="Movie Genre Icons - Filmstrip HD - coloured" version="1.0.1" provider-name="bsoriano, Mr. V, jcastell7">
 	<extension point="kodi.resource.images" compile="true" type="moviegenreicons" />
 	<requires>
 		<import addon="kodi.resource" version="1.0.0" />
@@ -90,7 +90,7 @@
 		<platform>all</platform>
 		<license>Creative Commons Attribution 3.0</license>
 	</extension>
-</addon><addon id="resource.images.skin.madnox" version="1.0.1" name="Madnox Image Resources" provider-name="Kittmaster">
+</addon><addon id="resource.images.skin.madnox" version="1.0.1" name="Madnox Image Resources" provider-name="jcastell7">
     <requires>
         
         <import addon="kodi.resource" version="1.0.0" />
@@ -104,7 +104,7 @@
         <platform>all</platform>
         <license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
         <forum>https://forum.kodi.tv/forumdisplay.php?fid=314</forum>
-        <source>https://github.com/kittmaster/KittmasterRepo</source>
+        <source>https://github.com/jcastell7/madnox</source>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
@@ -230,7 +230,7 @@ v0.4.0 (2025-03-23)
         </assets>
         <news>Added TMDB language options</news>
     </extension>
-</addon><addon id="script.skin.madnox" name="Madnox Skin Helper" version="1.0.6" provider-name="Kittmaster">
+</addon><addon id="script.skin.madnox" name="Madnox Skin Helper" version="1.0.6" provider-name="jcastell7">
 
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
@@ -280,8 +280,8 @@ v0.4.0 (2025-03-23)
 
         
         <license>GPL-2.0-or-later</license>
-        <source>https://github.com/kittmaster/KittmasterRepo/madnox-helper</source>
-        <website>https://github.com/kittmaster/KittmasterRepo</website>
+        <source>https://github.com/jcastell7/madnox/madnox-helper</source>
+        <website>https://github.com/jcastell7/madnox</website>
 
         <platform>all</platform>
 		<assets>
@@ -375,7 +375,7 @@ v0.4.0 (2025-03-23)
 			<logo>resources/logo.png</logo>
 		</assets>
 	</extension>
-</addon><addon id="skin.madnox" version="21.10.08" name="Madnox" provider-name="Kittmaster">
+</addon><addon id="skin.madnox" version="21.10.08" name="Madnox" provider-name="jcastell7">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
 		<import addon="script.skin.madnox" version="1.0.5" />
@@ -423,8 +423,8 @@ v0.4.0 (2025-03-23)
 		<platform>all</platform>
 		<license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
 		<forum>https://forum.kodi.tv/forumdisplay.php?fid=314</forum>
-		<source>https://github.com/kittmaster/KittmasterRepo</source>
-		<website>https://github.com/kittmaster/KittmasterRepo</website>
+		<source>https://github.com/jcastell7/madnox</source>
+		<website>https://github.com/jcastell7/madnox</website>
 		<assets>
 			<icon>resources/icon.png</icon>
 			<fanart>resources/fanart.jpg</fanart>

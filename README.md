@@ -1,9 +1,9 @@
 ## <p align="center"> <ins>Madnox for Kodi</ins> ( <ins>Nexus / Omega+</ins> )</p>
 
-<!--  ![Madnox Logo](https://github.com/kittmaster/KittmasterRepo/blob/master/repo/skin.madnox/resources/icon.png) -->
+<!--  ![Madnox Logo](https://github.com/jcastell7/madnox/blob/master/repo/skin.madnox/resources/icon.png) -->
 
 <p align="center" width="100%">
-    <img width="50%" src="https://github.com/kittmaster/KittmasterRepo/blob/master/omega/skin.madnox/resources/icon.png">
+    <img width="50%" src="https://github.com/jcastell7/madnox/blob/master/omega/skin.madnox/resources/icon.png">
 </p>
 
 <p align="center">Madnox is one of the most eye candy driven skins for Kodi.</p>
@@ -22,13 +22,13 @@
 ### <ins>Installation</ins> ( 2 options )
 
 1. Install using zip file ( No auto updates ) 
-2. Install Kittmaster's Repository ( Auto update notifications & installation ) (Preferred)
+2. Install Madnox Repository ( Auto update notifications & installation ) (Preferred)
 
-Note: The Madnox skin is a derivative, retooled version of an official Kodi repository skin, from what I was told, it was to be submitted to the official Kodi repository but never made its way due to the author's life priorities. Knowing that it was destined for submission to the official Kodi repository, we will work to meet that same goal as development restarts and brings the skin into the latest conformity standards. Until that process and testing standard is complete, GitHub will be the primary source of updates going forward for Madnox v3. This statement is written/modified on 3/01/2024 by Kittmaster.
+Note: The Madnox skin is a derivative, retooled version of an official Kodi repository skin, from what I was told, it was to be submitted to the official Kodi repository but never made its way due to the author's life priorities. Knowing that it was destined for submission to the official Kodi repository, we will work to meet that same goal as development restarts and brings the skin into the latest conformity standards. Until that process and testing standard is complete, GitHub will be the primary source of updates going forward for Madnox v3. This statement is written/modified on 3/01/2024 by jcastell7.
 
 #### <ins>Option 1</ins> ( Old way )
 
-1. Click the latest zip file found here: https://github.com/kittmaster/KittmasterRepo/tree/master/repo/zips/repository.kittmaster	
+1. Click the latest zip file found here: https://github.com/jcastell7/madnox/tree/master/repo/zips/repository.madnox	
 2. Download the zip by clicking the download icon (Download raw file -> left of the pencil).
 3. Start Kodi and go to System -> Settings -> Add-ons and select "Install from zip file". You will be prompted to go to settings. Turn on "Unknown sources". Update official add-ons: "Any repositories" should be selected.
 4. Browse for the file downloaded and press "OK".
@@ -37,12 +37,12 @@ Note: The Madnox skin is a derivative, retooled version of an official Kodi repo
 
 #### <ins>Option 2</ins> ( New way -> Recommended for updates )
 
-1. Go to System -> Settings -> File Manager -> Left Panel -> DOUBLE CLICK: Add source -> DOUBLE CLICK: <None> -> Copy/Paste this link: **`https://kittmaster.github.io/KittmasterRepo/`** -> Click "Done".
-2. If you MANUALLY typed/onscreen keyboard the link in step 1, it is CASE SENSITIVE! Note that the **K** and **R** are capitols! If you type them as lowercase, Kodi will not see the Repo!    
+1. Go to System -> Settings -> File Manager -> Left Panel -> DOUBLE CLICK: Add source -> DOUBLE CLICK: <None> -> Copy/Paste this link: **`https://jcastell7.github.io/madnox/`** -> Click "Done".
+2. If you MANUALLY typed/onscreen keyboard the link in step 1, it is CASE SENSITIVE! If you type them incorrectly, Kodi will not see the Repo!    
 3. Name the repository, or leave as KODI parsed it.
 4. Click "OK".
-3. The Kittmaster Repository will now be installed as a **source option** (like SMB, mapped drive, etc) in the Add-ons browser to install the skin.
-4. Go to System -> Add-ons -> Install from repository -> Select **KittmasterRepo** ( or the name you provided ) -> Look and Feel -> Skin -> Click Madnox to install skin and all of its dependencies.
+3. The Madnox Repository will now be installed as a **source option** (like SMB, mapped drive, etc) in the Add-ons browser to install the skin.
+4. Go to System -> Add-ons -> Install from repository -> Select **madnox** ( or the name you provided ) -> Look and Feel -> Skin -> Click Madnox to install skin and all of its dependencies.
 5. When complete, you will be asked if you would like to keep the new skin, select "Yes".
 
 ### <ins>Video of installations</ins>

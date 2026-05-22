@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon id="resource.images.skin.madnox" version="1.0.1" name="Madnox Image Resources" provider-name="Kittmaster">
+<addon id="resource.images.skin.madnox" version="1.0.1" name="Madnox Image Resources" provider-name="jcastell7">
     <requires>
         <!-- This is the core Kodi requirement for resource addons -->
         <import addon="kodi.resource" version="1.0.0"/>
@@ -13,7 +13,7 @@
         <platform>all</platform>
         <license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
         <forum>https://forum.kodi.tv/forumdisplay.php?fid=314</forum>
-        <source>https://github.com/kittmaster/KittmasterRepo</source>
+        <source>https://github.com/jcastell7/madnox</source>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>

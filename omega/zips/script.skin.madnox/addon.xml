@@ -2,7 +2,7 @@
 <addon id="script.skin.madnox"
        name="Madnox Skin Helper"
        version="1.0.6"
-       provider-name="Kittmaster">
+       provider-name="jcastell7">
 
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
@@ -52,8 +52,8 @@
 
         <!-- Metadata -->
         <license>GPL-2.0-or-later</license>
-        <source>https://github.com/kittmaster/KittmasterRepo/madnox-helper</source>
-        <website>https://github.com/kittmaster/KittmasterRepo</website>
+        <source>https://github.com/jcastell7/madnox/madnox-helper</source>
+        <website>https://github.com/jcastell7/madnox</website>
 
         <platform>all</platform>
 		<assets>
