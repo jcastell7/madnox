@@ -184,7 +184,7 @@ info "Running repo generator..."
 echo ""
 
 # Run in non-interactive mode by piping "changed" choice
-echo "c" | python3 "$REPO_GENERATOR"
+printf 'c\n\n' | python3 "$REPO_GENERATOR"
 
 echo ""
 ok "Repo generation complete."
