@@ -276,8 +276,8 @@ echo ""
 info "Running repo generator..."
 echo ""
 
-# Run in non-interactive mode by piping "changed" choice
-printf 'c\n\n' | python3 "$REPO_GENERATOR"
+# Run in non-interactive mode by piping "all" choice to force zip rebuild
+printf 'a\n\n' | python3 "$REPO_GENERATOR"
 
 echo ""
 ok "Repo generation complete."
