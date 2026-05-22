@@ -27,6 +27,7 @@
 				<onfocus>RunScript(script.skin.madnox, action=collection_view_sync, mode=focus)</onfocus>
 				<onleft>9050</onleft>
 				<onunfocus>RunScript(script.skin.madnox, action=trailer_cleanup)</onunfocus>
+				<onright condition="Window.IsVisible(MyPlaylist.xml)">6053</onright>
 				<onright>6051</onright>
 				<pagecontrol>6051</pagecontrol>
 				<include>ContainerScrollTime</include>
@@ -47,6 +48,43 @@
 				<onleft>51</onleft>
 				<!-- <onright condition="Control.IsVisible(61300)">61300</onright> -->
 				<onright condition="Control.IsVisible(61301)">61301</onright>
+			</control>
+			<!-- Playlist Move Buttons (right of list) -->
+			<control type="group">
+				<visible>Window.IsVisible(MyPlaylist.xml)</visible>
+				<top>141</top>
+				<right>60</right>
+				<control type="button" id="6053">
+					<width>50</width>
+					<height>72</height>
+					<align>center</align>
+					<font>Font32_Reg</font>
+					<label>&#x22C0;</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<onclick>Action(MoveItemUp)</onclick>
+					<onleft>51</onleft>
+					<ondown>6054</ondown>
+					<onup>6054</onup>
+				</control>
+				<control type="button" id="6054">
+					<top>72</top>
+					<width>50</width>
+					<height>72</height>
+					<align>center</align>
+					<font>Font32_Reg</font>
+					<label>&#x22C1;</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<onclick>Action(MoveItemDown)</onclick>
+					<onleft>51</onleft>
+					<onup>6053</onup>
+					<ondown>6053</ondown>
+				</control>
 			</control>
 		</control>
 		<!-- Media Flags -->

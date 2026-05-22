@@ -701,24 +701,200 @@
 	</include>
 
 	<include name="ViewContainerPlaylist">
-		<include content="ViewListLayout">
-			<param name="visible">true</param>
-			<param name="label">$VAR[ListTitleVar]</param>
-			<param name="rightlabelvisible">true</param>
-			<param name="rightlabel">$VAR[ListLabel2Var]</param>
-			<param name="id">$PARAM[id]</param>
-			<param name="biglistvisible">$PARAM[biglistvisible]</param>
-		</include>
-		<include content="ViewBigListLayout">
-			<param name="visible">true</param>
-			<param name="label">$VAR[ListTitlePlaylistVar]</param>
-			<param name="sublabelvisible">true</param>
-			<param name="sublabel">$VAR[BigListSubTitlePlaylistVar]</param>
-			<param name="rightlabelvisible">true</param>
-			<param name="rightlabel">$INFO[ListItem.Duration]</param>
-			<param name="id">$PARAM[id]</param>
-			<param name="biglistvisible">$PARAM[biglistvisible]</param>
-		</include>
+		<!-- Small List with arrows -->
+		<itemlayout height="72.7" condition="!$PARAM[biglistvisible]">
+			<control type="image">
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="group">
+				<visible>!ListItem.IsParentFolder</visible>
+				<animation effect="fade" end="70" condition="true">conditional</animation>
+				<control type="label">
+					<left>25</left>
+					<right>120</right>
+					<label>$VAR[ListTitleVar]</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<right>70</right>
+					<width>50</width>
+					<align>right</align>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ListLabel2Var]</label>
+				</control>
+				<control type="label">
+					<right>35</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>&#x22C0;</label>
+				</control>
+				<control type="label">
+					<right>5</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>&#x22C1;</label>
+				</control>
+			</control>
+		</itemlayout>
+		<focusedlayout height="72.7" condition="!$PARAM[biglistvisible]">
+			<control type="image">
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
+			</control>
+			<control type="group">
+				<visible>!ListItem.IsParentFolder</visible>
+				<control type="label">
+					<left>25</left>
+					<right>120</right>
+					<label>$VAR[ListTitleVar]</label>
+					<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<right>70</right>
+					<width>50</width>
+					<align>right</align>
+					<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					<label>$VAR[ListLabel2Var]</label>
+				</control>
+				<control type="label">
+					<right>35</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<label>&#x22C0;</label>
+				</control>
+				<control type="label">
+					<right>5</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<label>&#x22C1;</label>
+				</control>
+			</control>
+		</focusedlayout>
+		<!-- Big List with arrows -->
+		<itemlayout height="100" condition="$PARAM[biglistvisible]">
+			<control type="image">
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="group">
+				<visible>!ListItem.IsParentFolder</visible>
+				<animation effect="fade" end="70" condition="true">conditional</animation>
+				<control type="image">
+					<top>10</top>
+					<left>25</left>
+					<bottom>10</bottom>
+					<width>80</width>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" fallback="DefaultFile.png" diffuse="diffuse/list-icon.png">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<top>11</top>
+					<left>130</left>
+					<right>120</right>
+					<height>40</height>
+					<label>$VAR[ListTitlePlaylistVar]</label>
+					<font>Font32_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<bottom>11</bottom>
+					<left>130</left>
+					<right>120</right>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<label>$VAR[BigListSubTitlePlaylistVar]</label>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<right>70</right>
+					<width>60</width>
+					<align>right</align>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Duration]</label>
+				</control>
+				<control type="label">
+					<right>35</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>&#x22C0;</label>
+				</control>
+				<control type="label">
+					<right>5</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>&#x22C1;</label>
+				</control>
+			</control>
+		</itemlayout>
+		<focusedlayout height="100" condition="$PARAM[biglistvisible]">
+			<control type="image">
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
+			</control>
+			<control type="group">
+				<visible>!ListItem.IsParentFolder</visible>
+				<control type="image">
+					<top>10</top>
+					<left>25</left>
+					<bottom>10</bottom>
+					<width>80</width>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" fallback="DefaultFile.png" diffuse="diffuse/list-icon.png">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<top>11</top>
+					<left>130</left>
+					<right>120</right>
+					<height>40</height>
+					<label>$VAR[ListTitlePlaylistVar]</label>
+					<font>Font32_Reg</font>
+					<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<bottom>11</bottom>
+					<left>130</left>
+					<right>120</right>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<label>$VAR[BigListSubTitlePlaylistVar]</label>
+					<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<right>70</right>
+					<width>60</width>
+					<align>right</align>
+					<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Duration]</label>
+				</control>
+				<control type="label">
+					<right>35</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<label>&#x22C0;</label>
+				</control>
+				<control type="label">
+					<right>5</right>
+					<width>30</width>
+					<align>center</align>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<label>&#x22C1;</label>
+				</control>
+			</control>
+		</focusedlayout>
 	</include>
 
 	<include name="ViewWatchedStatus">

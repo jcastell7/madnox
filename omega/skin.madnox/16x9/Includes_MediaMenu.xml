@@ -1597,31 +1597,16 @@
 			<visible>Control.IsEnabled(22)</visible>
 		</control>
 		<!-- Move Up -->
-		<control type="radiobutton" id="23">
-			<include content="MediaMenuIconButton">
-				<param name="iconon">buttons/player/up.png</param>
-				<param name="iconoff">buttons/player/up.png</param>
-			</include>
-			<label>$LOCALIZE[13332]</label>
+		<control type="button" id="23">
+			<include>MediaMenuButton</include>
+			<label>&#x22C0; Move Up</label>
 			<onclick>Action(MoveItemUp)</onclick>
 		</control>
 		<!-- Move Down -->
-		<control type="radiobutton" id="24">
-			<include content="MediaMenuIconButton">
-				<param name="iconon">buttons/player/down.png</param>
-				<param name="iconoff">buttons/player/down.png</param>
-			</include>
-			<label>$LOCALIZE[13333]</label>
+		<control type="button" id="24">
+			<include>MediaMenuButton</include>
+			<label>&#x22C1; Move Down</label>
 			<onclick>Action(MoveItemDown)</onclick>
-		</control>
-		<!-- Remove -->
-		<control type="radiobutton" id="25">
-			<include content="MediaMenuIconButton">
-				<param name="iconon">icons/mediamenu/clear.png</param>
-				<param name="iconoff">icons/mediamenu/clear.png</param>
-			</include>
-			<label>$LOCALIZE[1210]</label>
-			<onclick>Action(Delete)</onclick>
 		</control>
 	</include>
 

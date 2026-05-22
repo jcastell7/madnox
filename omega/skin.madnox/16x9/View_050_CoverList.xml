@@ -36,6 +36,7 @@
 				<onfocus>RunScript(script.skin.madnox, action=collection_view_sync, mode=focus)</onfocus>
 				<onleft>9050</onleft>
 				<onunfocus>RunScript(script.skin.madnox, action=trailer_cleanup)</onunfocus>
+				<onright condition="Window.IsVisible(MyPlaylist.xml)">6051</onright>
 				<onright>6050</onright>
 				<pagecontrol>6050</pagecontrol>
 				<include>ContainerScrollTime</include>
@@ -55,6 +56,43 @@
 				<bottom>140</bottom>
 				<onleft>50</onleft>
 				<onright condition="Control.IsVisible(61301)">61301</onright>
+			</control>
+			<!-- Playlist Move Buttons (right of list) -->
+			<control type="group">
+				<visible>Window.IsVisible(MyPlaylist.xml)</visible>
+				<top>141</top>
+				<left>1240</left>
+				<control type="button" id="6051">
+					<width>50</width>
+					<height>72</height>
+					<align>center</align>
+					<font>Font32_Reg</font>
+					<label>&#x22C0;</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<onclick>Action(MoveItemUp)</onclick>
+					<onleft>50</onleft>
+					<ondown>6052</ondown>
+					<onup>6052</onup>
+				</control>
+				<control type="button" id="6052">
+					<top>72</top>
+					<width>50</width>
+					<height>72</height>
+					<align>center</align>
+					<font>Font32_Reg</font>
+					<label>&#x22C1;</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<onclick>Action(MoveItemDown)</onclick>
+					<onleft>50</onleft>
+					<onup>6051</onup>
+					<ondown>6051</ondown>
+				</control>
 			</control>
 		</control>
 

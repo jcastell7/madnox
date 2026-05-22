@@ -162,7 +162,8 @@
 					<include content="DialogButtonOSD">
 						<param name="texture" value="buttons/player/list.png" />
 					</include>
-					<onclick>ActivateWindow(1133)</onclick>
+					<onclick>Dialog.Close(all,true)</onclick>
+					<onclick>ActivateWindow(MusicPlaylist)</onclick>
 					<visible>!MusicPlayer.Content(LiveTV) + !Skin.HasSetting(MusicOSDDisablePlaylistButton)</visible>
 				</control>
 				<control type="radiobutton" id="302">
