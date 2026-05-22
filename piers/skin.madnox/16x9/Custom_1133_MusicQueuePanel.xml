@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<window id="1133" type="dialog">
+	<defaultcontrol always="true">50</defaultcontrol>
+	<onback>Dialog.Close(1133)</onback>
+	<include content="AnimationSlideRightWindow">
+		<param name="slide">420</param>
+	</include>
+	<controls>
+		<control type="group">
+			<left>1500</left>
+			<width>420</width>
+			<height>1080</height>
+			<!-- Panel Background -->
+			<control type="image">
+				<width>420</width>
+				<height>1080</height>
+				<texture colordiffuse="$VAR[PanelStyleColorVar]" border="20">$VAR[MediaMenuStyleVar]</texture>
+			</control>
+			<control type="image">
+				<width>420</width>
+				<height>1080</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]" border="20">$INFO[Skin.String(PanelTexture.texture)]</texture>
+			</control>
+			<!-- Shadow -->
+			<control type="image">
+				<left>-20</left>
+				<width>20</width>
+				<height>1080</height>
+				<texture colordiffuse="$VAR[PanelShadowColorVar]" border="20">panels/mediamenu/shadow.png</texture>
+			</control>
+			<!-- Header -->
+			<control type="group">
+				<left>20</left>
+				<top>20</top>
+				<width>380</width>
+				<height>60</height>
+				<control type="label">
+					<left>15</left>
+					<width>280</width>
+					<height>60</height>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>Font30_Cond_Bold</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$LOCALIZE[13350]</label>
+				</control>
+				<control type="button" id="10">
+					<right>0</right>
+					<width>60</width>
+					<height>60</height>
+					<font>-</font>
+					<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]">icons/mediamenu/cancel.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[PanelSubTextColorVar]">icons/mediamenu/cancel.png</texturenofocus>
+					<onclick>Dialog.Close(1133)</onclick>
+					<ondown>50</ondown>
+				</control>
+			</control>
+			<!-- Playlist List -->
+			<control type="list" id="50">
+				<left>10</left>
+				<top>90</top>
+				<width>400</width>
+				<height>880</height>
+				<onup>10</onup>
+				<ondown>100</ondown>
+				<pagecontrol>60</pagecontrol>
+				<scrolltime tween="cubic" easing="out">480</scrolltime>
+				<itemlayout height="72">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>400</width>
+						<height>72</height>
+						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="image">
+						<visible>ListItem.IsPlaying</visible>
+						<left>5</left>
+						<top>22</top>
+						<width>28</width>
+						<height>28</height>
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]">icons/mediamenu/play.png</texture>
+					</control>
+					<control type="label">
+						<left>40</left>
+						<top>8</top>
+						<width>280</width>
+						<height>30</height>
+						<font>Font25_Cond</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>40</left>
+						<top>36</top>
+						<width>280</width>
+						<height>28</height>
+						<font>Font22_Reg</font>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Artist]</label>
+					</control>
+					<control type="label">
+						<right>10</right>
+						<top>22</top>
+						<width>70</width>
+						<height>28</height>
+						<align>right</align>
+						<font>Font22_Reg</font>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Duration]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="72">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>400</width>
+						<height>72</height>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<visible>ListItem.IsPlaying</visible>
+						<left>5</left>
+						<top>22</top>
+						<width>28</width>
+						<height>28</height>
+						<texture colordiffuse="$VAR[PanelFocusTextColorVar]">icons/mediamenu/play.png</texture>
+					</control>
+					<control type="label">
+						<left>40</left>
+						<top>8</top>
+						<width>280</width>
+						<height>30</height>
+						<font>Font25_Cond</font>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>40</left>
+						<top>36</top>
+						<width>280</width>
+						<height>28</height>
+						<font>Font22_Reg</font>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Artist]</label>
+					</control>
+					<control type="label">
+						<right>10</right>
+						<top>22</top>
+						<width>70</width>
+						<height>28</height>
+						<align>right</align>
+						<font>Font22_Reg</font>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Duration]</label>
+					</control>
+				</focusedlayout>
+				<content>playlist://music/</content>
+			</control>
+			<!-- Scrollbar -->
+			<control type="scrollbar" id="60">
+				<left>395</left>
+				<top>90</top>
+				<width>15</width>
+				<height>880</height>
+				<texturesliderbackground colordiffuse="$VAR[PanelListSeparatorColorVar]" border="2">buttons/scrollbar-nib-back-vertical.png</texturesliderbackground>
+				<texturesliderbar colordiffuse="$VAR[PanelHighlightColorVar]" border="2">buttons/scrollbar-nib-focus.png</texturesliderbar>
+				<texturesliderbarfocus colordiffuse="$VAR[PanelHighlightColorVar]" border="2">buttons/scrollbar-nib-focus.png</texturesliderbarfocus>
+				<orientation>vertical</orientation>
+			</control>
+			<!-- Bottom Action Bar -->
+			<control type="grouplist" id="100">
+				<left>10</left>
+				<top>985</top>
+				<width>400</width>
+				<height>80</height>
+				<orientation>horizontal</orientation>
+				<itemgap>5</itemgap>
+				<onup>50</onup>
+				<!-- Move Up -->
+				<control type="button" id="101">
+					<width>125</width>
+					<height>70</height>
+					<font>Font22_Reg</font>
+					<align>center</align>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
+					<label>$LOCALIZE[13332]</label>
+					<onclick>Action(MoveItemUp)</onclick>
+				</control>
+				<!-- Move Down -->
+				<control type="button" id="102">
+					<width>125</width>
+					<height>70</height>
+					<font>Font22_Reg</font>
+					<align>center</align>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
+					<label>$LOCALIZE[13333]</label>
+					<onclick>Action(MoveItemDown)</onclick>
+				</control>
+				<!-- Remove -->
+				<control type="button" id="103">
+					<width>125</width>
+					<height>70</height>
+					<font>Font22_Reg</font>
+					<align>center</align>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
+					<label>$LOCALIZE[1210]</label>
+					<onclick>Action(Delete)</onclick>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>
