@@ -375,7 +375,7 @@ v0.4.0 (2025-03-23)
 			<logo>resources/logo.png</logo>
 		</assets>
 	</extension>
-</addon><addon id="skin.madnox" version="23.0.0" name="Madnox" provider-name="jcastell7">
+</addon><addon id="skin.madnox" version="23.0.1" name="Madnox" provider-name="jcastell7">
 	<requires>
 		<import addon="xbmc.gui" version="5.18.0" />
 		<import addon="script.skin.madnox" version="1.0.7" />
