@@ -101,7 +101,7 @@
 		</control>
 		<!-- Music Info -->
 		<control type="group">
-			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | Skin.String(MusicOSDInfo,persistant)</visible>
+			<visible>!Skin.String(MusicOSDInfo,off)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
