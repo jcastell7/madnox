@@ -7,6 +7,8 @@
 #   ./deploy.sh skin                # Bump skin only
 #   ./deploy.sh script              # Bump script only
 #   ./deploy.sh both                # Bump skin + script
+#   ./deploy.sh repo                # Bump repository addon only
+#   ./deploy.sh all                 # Bump skin + script + repo
 #   ./deploy.sh --no-push           # Skip git push at the end
 #
 
@@ -16,6 +18,8 @@ REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 KODI_FOLDER="piers"
 SKIN_ADDON_XML="$REPO_ROOT/$KODI_FOLDER/skin.madnox/addon.xml"
 SCRIPT_ADDON_XML="$REPO_ROOT/$KODI_FOLDER/script.skin.madnox/addon.xml"
+REPO_ADDON_XML="$REPO_ROOT/repo/repository.madnox/addon.xml"
+INDEX_HTML="$REPO_ROOT/index.html"
 REPO_GENERATOR="$REPO_ROOT/_repo_generator_v3.py"
 
 # Colors
@@ -64,6 +68,45 @@ bump_script_version() {
     echo "${major}.${minor}.$((patch + 1))"
 }
 
+get_repo_version() {
+    sed -n 's/.*id="repository\.madnox"[^>]*version="\([^"]*\)".*/\1/p' "$REPO_ADDON_XML"
+}
+
+bump_repo_version() {
+    local current="$1"
+    local major minor patch
+    IFS='.' read -r major minor patch <<< "$current"
+    echo "${major}.${minor}.$((patch + 1))"
+}
+
+set_repo_version() {
+    local new_version="$1"
+    sed -i '' "s/\(id=\"repository\.madnox\"[^>]*version=\"\)[^\"]*/\1${new_version}/" "$REPO_ADDON_XML"
+}
+
+update_repo_artifacts() {
+    local old_version="$1"
+    local new_version="$2"
+    local old_zip="repository.madnox-${old_version}.zip"
+    local new_zip="repository.madnox-${new_version}.zip"
+
+    # Copy new zip from generated zips to repo root
+    if [[ -f "$REPO_ROOT/repo/zips/repository.madnox/${new_zip}" ]]; then
+        cp "$REPO_ROOT/repo/zips/repository.madnox/${new_zip}" "$REPO_ROOT/${new_zip}"
+        ok "  Copied ${new_zip} to repo root"
+    fi
+
+    # Remove old root zip if different
+    if [[ "$old_zip" != "$new_zip" && -f "$REPO_ROOT/${old_zip}" ]]; then
+        rm "$REPO_ROOT/${old_zip}"
+        ok "  Removed old ${old_zip}"
+    fi
+
+    # Update index.html
+    sed -i '' "s/${old_zip}/${new_zip}/g" "$INDEX_HTML"
+    ok "  Updated index.html -> ${new_zip}"
+}
+
 set_skin_version() {
     local new_version="$1"
     sed -i '' "s/\(id=\"skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$SKIN_ADDON_XML"
@@ -90,7 +133,7 @@ NO_PUSH=false
 
 for arg in "$@"; do
     case "$arg" in
-        skin|script|both) BUMP_TARGET="$arg" ;;
+        skin|script|both|repo|all) BUMP_TARGET="$arg" ;;
         --no-push) NO_PUSH=true ;;
         -h|--help)
             echo "Usage: ./deploy.sh [skin|script|both] [--no-push]"
@@ -107,12 +150,16 @@ if [[ -z "$BUMP_TARGET" ]]; then
     echo "  1) skin        — skin.madnox only"
     echo "  2) script      — script.skin.madnox only"
     echo "  3) both        — skin + script"
+    echo "  4) repo        — repository.madnox only"
+    echo "  5) all         — skin + script + repo"
     echo ""
-    read -rp "Choice [1/2/3]: " choice
+    read -rp "Choice [1/2/3/4/5]: " choice
     case "$choice" in
         1|skin)   BUMP_TARGET="skin" ;;
         2|script) BUMP_TARGET="script" ;;
         3|both)   BUMP_TARGET="both" ;;
+        4|repo)   BUMP_TARGET="repo" ;;
+        5|all)    BUMP_TARGET="all" ;;
         *) error "Invalid choice."; exit 1 ;;
     esac
 fi
@@ -135,8 +182,9 @@ fi
 
 SKIN_BUMPED=false
 SCRIPT_BUMPED=false
+REPO_BUMPED=false
 
-if [[ "$BUMP_TARGET" == "skin" || "$BUMP_TARGET" == "both" ]]; then
+if [[ "$BUMP_TARGET" == "skin" || "$BUMP_TARGET" == "both" || "$BUMP_TARGET" == "all" ]]; then
     CURRENT_SKIN=$(get_skin_version)
     NEW_SKIN=$(bump_skin_version "$CURRENT_SKIN")
 
@@ -153,7 +201,7 @@ if [[ "$BUMP_TARGET" == "skin" || "$BUMP_TARGET" == "both" ]]; then
     ok "  Skin version set to $NEW_SKIN"
 fi
 
-if [[ "$BUMP_TARGET" == "script" || "$BUMP_TARGET" == "both" ]]; then
+if [[ "$BUMP_TARGET" == "script" || "$BUMP_TARGET" == "both" || "$BUMP_TARGET" == "all" ]]; then
     CURRENT_SCRIPT=$(get_script_version)
     NEW_SCRIPT=$(bump_script_version "$CURRENT_SCRIPT")
 
@@ -170,10 +218,27 @@ if [[ "$BUMP_TARGET" == "script" || "$BUMP_TARGET" == "both" ]]; then
     ok "  Script version set to $NEW_SCRIPT"
 
     # Update the skin's dependency on the script
-    if [[ "$BUMP_TARGET" == "both" || -f "$SKIN_ADDON_XML" ]]; then
+    if [[ "$BUMP_TARGET" == "both" || "$BUMP_TARGET" == "all" ]]; then
         update_skin_script_dependency "$NEW_SCRIPT"
         ok "  Skin dependency on script.skin.madnox updated to $NEW_SCRIPT"
     fi
+fi
+
+if [[ "$BUMP_TARGET" == "repo" || "$BUMP_TARGET" == "all" ]]; then
+    CURRENT_REPO=$(get_repo_version)
+    NEW_REPO=$(bump_repo_version "$CURRENT_REPO")
+
+    info "Repo: $CURRENT_REPO -> $NEW_REPO"
+    read -rp "Accept new repo version? [Y/n/custom]: " response
+    case "$response" in
+        ""|[Yy]*) ;; # accept
+        [Nn]*) error "Aborted."; exit 0 ;;
+        *) NEW_REPO="$response" ;;
+    esac
+
+    set_repo_version "$NEW_REPO"
+    REPO_BUMPED=true
+    ok "  Repo version set to $NEW_REPO"
 fi
 
 echo ""
@@ -190,6 +255,12 @@ echo ""
 ok "Repo generation complete."
 echo ""
 
+# --- Post-generation: update repo artifacts ---
+
+if [[ "$REPO_BUMPED" == true ]]; then
+    update_repo_artifacts "$CURRENT_REPO" "$NEW_REPO"
+fi
+
 # --- Git Operations ---
 
 info "Staging changes..."
@@ -200,6 +271,15 @@ if [[ "$SKIN_BUMPED" == true ]]; then
 fi
 if [[ "$SCRIPT_BUMPED" == true ]]; then
     git add "$KODI_FOLDER/script.skin.madnox/"
+fi
+if [[ "$REPO_BUMPED" == true ]]; then
+    git add "repo/"
+    git add "index.html"
+    git add "repository.madnox-"*.zip
+    # Remove old root zip from git if it was deleted
+    if [[ "$CURRENT_REPO" != "$NEW_REPO" ]]; then
+        git rm --ignore-unmatch -q "repository.madnox-${CURRENT_REPO}.zip" 2>/dev/null || true
+    fi
 fi
 
 # Stage the regenerated zips
@@ -212,6 +292,9 @@ if [[ "$SKIN_BUMPED" == true ]]; then
 fi
 if [[ "$SCRIPT_BUMPED" == true ]]; then
     COMMIT_PARTS+=("script $NEW_SCRIPT")
+fi
+if [[ "$REPO_BUMPED" == true ]]; then
+    COMMIT_PARTS+=("repo $NEW_REPO")
 fi
 VERSION_SUMMARY=$(IFS=', '; echo "${COMMIT_PARTS[*]}")
 
