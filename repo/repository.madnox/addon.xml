@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.madnox" name="Madnox Repo" version="1.0.12" provider-name="jcastell7">
+<addon id="repository.madnox" name="Madnox Repo" version="1.0.13" provider-name="jcastell7">
 	<extension point="xbmc.addon.repository" name="madnox">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/jcastell7/madnox/master/repo/zips/addons.xml</info>
