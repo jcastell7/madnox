@@ -33,11 +33,11 @@ error() { echo -e "${RED}$1${NC}" >&2; }
 # --- Version helpers ---
 
 get_skin_version() {
-    grep -oP 'id="skin\.madnox" version="\K[^"]+' "$SKIN_ADDON_XML"
+    sed -n 's/.*id="skin\.madnox" version="\([^"]*\)".*/\1/p' "$SKIN_ADDON_XML"
 }
 
 get_script_version() {
-    grep -oP 'version="\K[^"]+' "$SCRIPT_ADDON_XML" | head -1
+    sed -n '/^<addon/,/<\/addon>/s/.*version="\([^"]*\)".*/\1/p' "$SCRIPT_ADDON_XML" | head -1
 }
 
 bump_skin_version() {
@@ -71,7 +71,8 @@ set_skin_version() {
 
 set_script_version() {
     local new_version="$1"
-    sed -i '' "s/\(id=\"script\.skin\.madnox\"[^>]*version=\"\)[^\"]*/\1${new_version}/" "$SCRIPT_ADDON_XML"
+    # Match the indented version line (not the xml declaration version)
+    sed -i '' "s/^       version=\"[^\"]*\"/       version=\"${new_version}\"/" "$SCRIPT_ADDON_XML"
 }
 
 update_skin_script_dependency() {
