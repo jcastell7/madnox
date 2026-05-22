@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<addon id="skin.madnox" version="22.00.01" name="Madnox" provider-name="jcastell7">
+<addon id="skin.madnox" version="22.00.02" name="Madnox" provider-name="jcastell7">
 	<requires>
 		<import addon="xbmc.gui" version="5.18.0" />
 		<import addon="script.skin.madnox" version="1.0.7" />
