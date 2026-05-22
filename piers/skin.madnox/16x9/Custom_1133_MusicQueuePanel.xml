@@ -60,17 +60,18 @@
 			<control type="list" id="50">
 				<left>10</left>
 				<top>90</top>
-				<width>400</width>
-				<height>880</height>
+				<width>340</width>
+				<height>920</height>
 				<onup>10</onup>
-				<ondown>100</ondown>
+				<ondown>103</ondown>
+				<onright>101</onright>
 				<pagecontrol>60</pagecontrol>
 				<scrolltime tween="cubic" easing="out">480</scrolltime>
 				<itemlayout height="72">
 					<control type="image">
 						<left>0</left>
 						<top>0</top>
-						<width>400</width>
+						<width>340</width>
 						<height>72</height>
 						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
@@ -85,7 +86,7 @@
 					<control type="label">
 						<left>40</left>
 						<top>8</top>
-						<width>280</width>
+						<width>220</width>
 						<height>30</height>
 						<font>Font25_Cond</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
@@ -94,7 +95,7 @@
 					<control type="label">
 						<left>40</left>
 						<top>36</top>
-						<width>280</width>
+						<width>220</width>
 						<height>28</height>
 						<font>Font22_Reg</font>
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
@@ -115,7 +116,7 @@
 					<control type="image">
 						<left>0</left>
 						<top>0</top>
-						<width>400</width>
+						<width>340</width>
 						<height>72</height>
 						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
@@ -130,7 +131,7 @@
 					<control type="label">
 						<left>40</left>
 						<top>8</top>
-						<width>280</width>
+						<width>220</width>
 						<height>30</height>
 						<font>Font25_Cond</font>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
@@ -139,7 +140,7 @@
 					<control type="label">
 						<left>40</left>
 						<top>36</top>
-						<width>280</width>
+						<width>220</width>
 						<height>28</height>
 						<font>Font22_Reg</font>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
@@ -158,65 +159,63 @@
 				</focusedlayout>
 				<content>playlist://music/</content>
 			</control>
+			<!-- Reorder Arrows (right of list) -->
+			<control type="grouplist" id="100">
+				<left>355</left>
+				<top>90</top>
+				<width>50</width>
+				<height>920</height>
+				<orientation>vertical</orientation>
+				<align>center</align>
+				<onleft>50</onleft>
+				<ondown>103</ondown>
+				<!-- Move Up -->
+				<control type="button" id="101">
+					<width>50</width>
+					<height>50</height>
+					<font>-</font>
+					<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]">buttons/player/up.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[PanelSubTextColorVar]">buttons/player/up.png</texturenofocus>
+					<onclick>Action(MoveItemUp)</onclick>
+					<ondown>102</ondown>
+				</control>
+				<!-- Move Down -->
+				<control type="button" id="102">
+					<width>50</width>
+					<height>50</height>
+					<font>-</font>
+					<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]">buttons/player/down.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[PanelSubTextColorVar]">buttons/player/down.png</texturenofocus>
+					<onclick>Action(MoveItemDown)</onclick>
+					<onup>101</onup>
+				</control>
+			</control>
 			<!-- Scrollbar -->
 			<control type="scrollbar" id="60">
-				<left>395</left>
+				<left>405</left>
 				<top>90</top>
-				<width>15</width>
-				<height>880</height>
+				<width>10</width>
+				<height>920</height>
 				<texturesliderbackground colordiffuse="$VAR[PanelListSeparatorColorVar]" border="2">buttons/scrollbar-nib-back-vertical.png</texturesliderbackground>
 				<texturesliderbar colordiffuse="$VAR[PanelHighlightColorVar]" border="2">buttons/scrollbar-nib-focus.png</texturesliderbar>
 				<texturesliderbarfocus colordiffuse="$VAR[PanelHighlightColorVar]" border="2">buttons/scrollbar-nib-focus.png</texturesliderbarfocus>
 				<orientation>vertical</orientation>
 			</control>
-			<!-- Bottom Action Bar -->
-			<control type="grouplist" id="100">
+			<!-- Bottom Remove Button -->
+			<control type="button" id="103">
 				<left>10</left>
-				<top>985</top>
+				<top>1020</top>
 				<width>400</width>
-				<height>80</height>
-				<orientation>horizontal</orientation>
-				<itemgap>5</itemgap>
+				<height>50</height>
+				<font>Font22_Reg</font>
+				<align>center</align>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
+				<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+				<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
+				<label>$LOCALIZE[1210]</label>
+				<onclick>Action(Delete)</onclick>
 				<onup>50</onup>
-				<!-- Move Up -->
-				<control type="button" id="101">
-					<width>125</width>
-					<height>70</height>
-					<font>Font22_Reg</font>
-					<align>center</align>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
-					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
-					<label>$LOCALIZE[13332]</label>
-					<onclick>Action(MoveItemUp)</onclick>
-				</control>
-				<!-- Move Down -->
-				<control type="button" id="102">
-					<width>125</width>
-					<height>70</height>
-					<font>Font22_Reg</font>
-					<align>center</align>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
-					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
-					<label>$LOCALIZE[13333]</label>
-					<onclick>Action(MoveItemDown)</onclick>
-				</control>
-				<!-- Remove -->
-				<control type="button" id="103">
-					<width>125</width>
-					<height>70</height>
-					<font>Font22_Reg</font>
-					<align>center</align>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
-					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
-					<label>$LOCALIZE[1210]</label>
-					<onclick>Action(Delete)</onclick>
-				</control>
 			</control>
 		</control>
 	</controls>
