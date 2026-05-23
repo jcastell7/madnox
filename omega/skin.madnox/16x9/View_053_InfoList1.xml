@@ -52,7 +52,6 @@
 				<onfocus>RunScript(script.skin.madnox, action=collection_view_sync, mode=focus)</onfocus>
 				<onleft>9050</onleft>
 				<onunfocus>RunScript(script.skin.madnox, action=trailer_cleanup)</onunfocus>
-				<onright condition="Window.IsVisible(MyPlaylist.xml)">6055</onright>
 				<onright>6053</onright>
 				<pagecontrol>6053</pagecontrol>
 				<include>ContainerScrollTime</include>
@@ -82,43 +81,6 @@
 				<onright condition="Control.IsVisible(60531)">60531</onright>
 				<onright condition="!Control.IsVisible(60531) + Control.IsVisible(61300)">61300</onright>
 				<onright condition="!Control.IsVisible(60531) + Control.IsVisible(61301)">61301</onright>
-			</control>
-			<!-- Playlist Move Buttons (right of list) -->
-			<control type="group">
-				<visible>Window.IsVisible(MyPlaylist.xml)</visible>
-				<top>141</top>
-				<left>1100</left>
-				<control type="button" id="6055">
-					<width>50</width>
-					<height>72</height>
-					<align>center</align>
-					<font>Font32_Reg</font>
-					<label>&#x22C0;</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
-					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>Action(MoveItemUp)</onclick>
-					<onleft>53</onleft>
-					<ondown>6056</ondown>
-					<onup>6056</onup>
-				</control>
-				<control type="button" id="6056">
-					<top>72</top>
-					<width>50</width>
-					<height>72</height>
-					<align>center</align>
-					<font>Font32_Reg</font>
-					<label>&#x22C1;</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
-					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>Action(MoveItemDown)</onclick>
-					<onleft>53</onleft>
-					<onup>6055</onup>
-					<ondown>6055</ondown>
-				</control>
 			</control>
 		</control>
 		<!-- Media flags Fix overlapping icons when Movie & TV Show is linked -->

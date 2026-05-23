@@ -1596,18 +1596,6 @@
 			<label>$LOCALIZE[192]</label>
 			<visible>Control.IsEnabled(22)</visible>
 		</control>
-		<!-- Move Up -->
-		<control type="button" id="23">
-			<include>MediaMenuButton</include>
-			<label>&#x22C0; Move Up</label>
-			<onclick>Action(MoveItemUp)</onclick>
-		</control>
-		<!-- Move Down -->
-		<control type="button" id="24">
-			<include>MediaMenuButton</include>
-			<label>&#x22C1; Move Down</label>
-			<onclick>Action(MoveItemDown)</onclick>
-		</control>
 	</include>
 
 	<!-- Games -->
