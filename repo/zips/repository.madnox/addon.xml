@@ -6,21 +6,11 @@
 			<checksum>https://raw.githubusercontent.com/jcastell7/madnox/master/repo/zips/addons.xml.md5</checksum>
 			<datadir zip="true">https://raw.githubusercontent.com/jcastell7/madnox/master/repo/zips/</datadir>
 		</dir>
-		<dir minversion="20.0.0">
-			<info compressed="false">https://raw.githubusercontent.com/jcastell7/madnox/master/nexus/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/jcastell7/madnox/master/nexus/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/jcastell7/madnox/master/nexus/zips/</datadir>
-		</dir>
 		<dir minversion="21.0.0">
 			<info compressed="false">https://raw.githubusercontent.com/jcastell7/madnox/master/omega/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/jcastell7/madnox/master/omega/zips/addons.xml.md5</checksum>
 			<datadir zip="true">https://raw.githubusercontent.com/jcastell7/madnox/master/omega/zips/</datadir>
 		</dir>
-		<dir minversion="21.9.1">
-			<info compressed="false">https://raw.githubusercontent.com/jcastell7/madnox/master/piers/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/jcastell7/madnox/master/piers/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/jcastell7/madnox/master/piers/zips/</datadir>
-		</dir>		
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Madnox Repository for Madnox v3 2024+</summary>
