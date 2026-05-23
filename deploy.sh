@@ -15,11 +15,8 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
-KODI_FOLDER="piers"
-SKIN_ADDON_XML="$REPO_ROOT/$KODI_FOLDER/skin.madnox/addon.xml"
-SCRIPT_ADDON_XML="$REPO_ROOT/$KODI_FOLDER/script.skin.madnox/addon.xml"
-OMEGA_SKIN_ADDON_XML="$REPO_ROOT/omega/skin.madnox/addon.xml"
-OMEGA_SCRIPT_ADDON_XML="$REPO_ROOT/omega/script.skin.madnox/addon.xml"
+SKIN_ADDON_XML="$REPO_ROOT/omega/skin.madnox/addon.xml"
+SCRIPT_ADDON_XML="$REPO_ROOT/omega/script.skin.madnox/addon.xml"
 REPO_ADDON_XML="$REPO_ROOT/repo/repository.madnox/addon.xml"
 INDEX_HTML="$REPO_ROOT/index.html"
 REPO_GENERATOR="$REPO_ROOT/_repo_generator_v3.py"
@@ -46,27 +43,19 @@ get_script_version() {
     sed -n '/^<addon/,/<\/addon>/s/.*version="\([^"]*\)".*/\1/p' "$SCRIPT_ADDON_XML" | head -1
 }
 
-get_omega_skin_version() {
-    sed -n 's/.*id="skin\.madnox" version="\([^"]*\)".*/\1/p' "$OMEGA_SKIN_ADDON_XML"
-}
-
-get_omega_script_version() {
-    sed -n '/^<addon/,/<\/addon>/s/.*version="\([^"]*\)".*/\1/p' "$OMEGA_SCRIPT_ADDON_XML" | head -1
-}
-
-set_omega_skin_version() {
+set_skin_version() {
     local new_version="$1"
-    sed -i '' "s/\(id=\"skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$OMEGA_SKIN_ADDON_XML"
+    sed -i '' "s/\(id=\"skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$SKIN_ADDON_XML"
 }
 
-set_omega_script_version() {
+set_script_version() {
     local new_version="$1"
-    sed -i '' "s/^       version=\"[^\"]*\"/       version=\"${new_version}\"/" "$OMEGA_SCRIPT_ADDON_XML"
+    sed -i '' "s/^       version=\"[^\"]*\"/       version=\"${new_version}\"/" "$SCRIPT_ADDON_XML"
 }
 
-update_omega_skin_script_dependency() {
+update_skin_script_dependency() {
     local new_version="$1"
-    sed -i '' "s/\(import addon=\"script\.skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$OMEGA_SKIN_ADDON_XML"
+    sed -i '' "s/\(import addon=\"script\.skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$SKIN_ADDON_XML"
 }
 
 bump_skin_version() {
@@ -132,22 +121,6 @@ update_repo_artifacts() {
     ok "  Updated index.html -> ${new_zip}"
 }
 
-set_skin_version() {
-    local new_version="$1"
-    sed -i '' "s/\(id=\"skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$SKIN_ADDON_XML"
-}
-
-set_script_version() {
-    local new_version="$1"
-    # Match the indented version line (not the xml declaration version)
-    sed -i '' "s/^       version=\"[^\"]*\"/       version=\"${new_version}\"/" "$SCRIPT_ADDON_XML"
-}
-
-update_skin_script_dependency() {
-    local new_version="$1"
-    sed -i '' "s/\(import addon=\"script\.skin\.madnox\" version=\"\)[^\"]*/\1${new_version}/" "$SKIN_ADDON_XML"
-}
-
 # --- Main ---
 
 cd "$REPO_ROOT"
@@ -161,7 +134,7 @@ for arg in "$@"; do
         skin|script|both|repo|all) BUMP_TARGET="$arg" ;;
         --no-push) NO_PUSH=true ;;
         -h|--help)
-            echo "Usage: ./deploy.sh [skin|script|both] [--no-push]"
+            echo "Usage: ./deploy.sh [skin|script|both|repo|all] [--no-push]"
             exit 0
             ;;
         *) error "Unknown argument: $arg"; exit 1 ;;
@@ -222,9 +195,8 @@ if [[ "$BUMP_TARGET" == "skin" || "$BUMP_TARGET" == "both" || "$BUMP_TARGET" == 
     esac
 
     set_skin_version "$NEW_SKIN"
-    set_omega_skin_version "$NEW_SKIN"
     SKIN_BUMPED=true
-    ok "  Skin version set to $NEW_SKIN (piers + omega)"
+    ok "  Skin version set to $NEW_SKIN"
 fi
 
 if [[ "$BUMP_TARGET" == "script" || "$BUMP_TARGET" == "both" || "$BUMP_TARGET" == "all" ]]; then
@@ -240,15 +212,13 @@ if [[ "$BUMP_TARGET" == "script" || "$BUMP_TARGET" == "both" || "$BUMP_TARGET" =
     esac
 
     set_script_version "$NEW_SCRIPT"
-    set_omega_script_version "$NEW_SCRIPT"
     SCRIPT_BUMPED=true
-    ok "  Script version set to $NEW_SCRIPT (piers + omega)"
+    ok "  Script version set to $NEW_SCRIPT"
 
     # Update the skin's dependency on the script
     if [[ "$BUMP_TARGET" == "both" || "$BUMP_TARGET" == "all" ]]; then
         update_skin_script_dependency "$NEW_SCRIPT"
-        update_omega_skin_script_dependency "$NEW_SCRIPT"
-        ok "  Skin dependency on script.skin.madnox updated to $NEW_SCRIPT (piers + omega)"
+        ok "  Skin dependency on script.skin.madnox updated to $NEW_SCRIPT"
     fi
 fi
 
@@ -295,11 +265,9 @@ info "Staging changes..."
 
 # Stage the source addon folders that were bumped
 if [[ "$SKIN_BUMPED" == true ]]; then
-    git add "$KODI_FOLDER/skin.madnox/"
     git add "omega/skin.madnox/"
 fi
 if [[ "$SCRIPT_BUMPED" == true ]]; then
-    git add "$KODI_FOLDER/script.skin.madnox/"
     git add "omega/script.skin.madnox/"
 fi
 if [[ "$REPO_BUMPED" == true ]]; then
@@ -313,7 +281,6 @@ if [[ "$REPO_BUMPED" == true ]]; then
 fi
 
 # Stage the regenerated zips
-git add "$KODI_FOLDER/zips/"
 git add "omega/zips/"
 
 # Build commit message
