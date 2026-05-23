@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="repository.madnox" name="Madnox Repo" version="1.0.13" provider-name="jcastell7">
+<addons><addon id="repository.madnox" name="Madnox Repo" version="1.0.14" provider-name="jcastell7">
 	<extension point="xbmc.addon.repository" name="madnox">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/jcastell7/madnox/master/repo/zips/addons.xml</info>
@@ -10,7 +10,7 @@
 			<info compressed="false">https://raw.githubusercontent.com/jcastell7/madnox/master/omega/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/jcastell7/madnox/master/omega/zips/addons.xml.md5</checksum>
 			<datadir zip="true">https://raw.githubusercontent.com/jcastell7/madnox/master/omega/zips/</datadir>
-		</dir>	
+		</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Madnox Repository for Madnox v3 2024+</summary>
